@@ -1,0 +1,1 @@
+- [ ] full genome test - Dante Labs WGS (30x и выше) 399$ [alphagenome](https://github.com/google-deepmind/alphagenome)  или обычный за 30-50 евро

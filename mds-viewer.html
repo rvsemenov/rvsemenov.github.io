@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+   <!--- basic page needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>Markdown Files Viewer - Semenov</title>
+	<meta name="description" content="View Markdown files from mds folder">
+	<meta name="author" content="">
+
+   <!-- mobile specific metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+ 	<!-- CSS
+   ================================================== -->
+   <link rel="stylesheet" href="css/base.css">
+   <link rel="stylesheet" href="css/main.css">
+   <link rel="stylesheet" href="css/vendor.css">
+
+   <!-- script
+   ================================================== -->
+	<script src="js/modernizr.js"></script>
+	<script src="js/pace.min.js"></script>
+
+   <!-- favicons
+	================================================== -->
+	<link rel="icon" type="image/png" href="favicon.png">
+
+   <style>
+      .md-content {
+         background: #fff;
+         padding: 30px;
+         border-radius: 8px;
+         box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+         margin-bottom: 30px;
+      }
+      
+      .md-content h1, .md-content h2, .md-content h3, .md-content h4, .md-content h5, .md-content h6 {
+         color: #333;
+         margin-top: 30px;
+         margin-bottom: 15px;
+      }
+      
+      .md-content h1 { font-size: 2.5em; }
+      .md-content h2 { font-size: 2em; }
+      .md-content h3 { font-size: 1.5em; }
+      
+      .md-content p {
+         line-height: 1.6;
+         margin-bottom: 15px;
+      }
+      
+      .md-content ul, .md-content ol {
+         margin-bottom: 15px;
+         padding-left: 30px;
+      }
+      
+      .md-content li {
+         margin-bottom: 5px;
+      }
+      
+      .md-content code {
+         background: #f4f4f4;
+         padding: 2px 6px;
+         border-radius: 3px;
+         font-family: 'Courier New', monospace;
+      }
+      
+      .md-content pre {
+         background: #f8f8f8;
+         padding: 15px;
+         border-radius: 5px;
+         overflow-x: auto;
+         margin: 15px 0;
+      }
+      
+      .md-content pre code {
+         background: none;
+         padding: 0;
+      }
+      
+      .md-content blockquote {
+         border-left: 4px solid #ddd;
+         padding-left: 15px;
+         margin: 15px 0;
+         color: #666;
+      }
+      
+      .file-header {
+         background: #f8f9fa;
+         padding: 15px 30px;
+         border-bottom: 1px solid #e9ecef;
+         border-radius: 8px 8px 0 0;
+         margin-bottom: 0;
+      }
+      
+      .file-header h3 {
+         margin: 0;
+         color: #495057;
+      }
+      
+      .loading {
+         text-align: center;
+         padding: 50px;
+         color: #666;
+      }
+      
+      .error {
+         background: #f8d7da;
+         color: #721c24;
+         padding: 15px;
+         border-radius: 5px;
+         margin: 15px 0;
+      }
+   </style>
+
+</head>
+
+<body id="top">
+
+   <header>
+   	<div class="row">
+
+   		<div class="top-bar">
+   			<a class="menu-toggle" href="#"><span>Menu</span></a>
+
+	   		<div class="logo">
+		         <a href="index.html">Semenov</a>
+		      </div>
+
+		   	<nav id="main-nav-wrap">
+					<ul class="main-navigation">
+						<li><a href="index.html" title="">Home</a></li>
+                  <li><a href="code.html" title="">Code examples</a></li>
+                  <li><a href="mds-viewer.html" title="">Markdown Files</a></li>
+					</ul>
+				</nav>
+   		</div> 
+
+   	</div> 
+   </header>  
+
+	<!-- intro section
+   ================================================== -->
+   <section id="intro">
+
+   	<div class="intro-overlay"></div>
+
+   	<div class="intro-content">
+   		<div class="row">
+
+   			<div class="col-twelve">
+
+	   			<h5>Markdown Files</h5>
+	   			<h1>Viewer</h1>
+
+	   			<p class="intro-position">
+	   				<span>Browse and read Markdown files from the mds folder</span>
+	   			</p>
+
+	   		</div>
+
+   		</div>
+   	</div> <!-- /intro-content -->
+
+   </section> <!-- /intro -->
+
+   <!-- content section
+   ================================================== -->
+   <section id="content">
+
+   	<div class="row section-intro">
+   		<div class="col-twelve">
+
+   			<h5>Files</h5>
+   			<h1>Markdown Documents</h1>
+
+   			<p class="lead">Below are the Markdown files from the mds folder, converted to HTML for easy reading.</p>
+
+   		</div>   		
+   	</div> <!-- /section-intro -->
+
+   	<div class="row">
+   		<div class="col-twelve">
+   			<div id="markdown-content">
+   				<div class="loading">
+   					<i class="fa fa-spinner fa-spin"></i> Loading Markdown files...
+   				</div>
+   			</div>
+   		</div>
+   	</div>
+
+   </section> <!-- /content -->
+
+   <!-- footer
+   ================================================== -->
+   <footer>
+     	<div class="row">
+
+     		<div class="col-six tab-full pull-right social">
+
+     			<ul class="footer-social">        
+			      <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+			      <li><a href="#"><i class="fa fa-behance"></i></a></li>
+			      <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+			      <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+			      <li><a href="#"><i class="fa fa-instagram"></i></a></li>
+			   </ul> 
+	      		
+	      </div>
+
+	      	<div class="col-six tab-full">
+	      		<div class="copyright">
+		         	<span>© Copyright Kards 2016.</span> 
+		         	<span>Design by <a href="http://www.styleshout.com/">styleshout</a></span>	         	
+		         </div>		                  
+	      	</div>
+
+	      	<div id="go-top">
+		         <a class="smoothscroll" title="Back to Top" href="#top"><i class="fa fa-long-arrow-up"></i></a>
+		      </div>
+
+      	</div> <!-- /row -->     	
+   </footer>  
+
+   <div id="preloader"> 
+    	<div id="loader"></div>
+   </div> 
+
+   <!-- Java Script
+   ================================================== --> 
+   <script src="js/jquery-2.1.3.min.js"></script>
+   <script src="js/plugins.js"></script>
+   <script src="js/main.js"></script>
+   
+   <!-- Marked.js for Markdown parsing -->
+   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+   <script>
+      // Configure marked.js
+      marked.setOptions({
+         breaks: true,
+         gfm: true
+      });
+
+      // List of markdown files to load
+      const markdownFiles = [
+         '/1.md'
+      ];
+
+      // Function to load and display markdown files
+      async function loadMarkdownFiles() {
+         const container = document.getElementById('markdown-content');
+         container.innerHTML = '';
+
+         for (const file of markdownFiles) {
+            try {
+               const response = await fetch(file);
+               if (!response.ok) {
+                  throw new Error(`HTTP error! status: ${response.status}`);
+               }
+               
+               const markdownText = await response.text();
+               const htmlContent = marked.parse(markdownText);
+               
+               const fileDiv = document.createElement('div');
+               fileDiv.className = 'md-content';
+               
+               const fileName = file.split('/').pop();
+               fileDiv.innerHTML = `
+                  <div class="file-header">
+                     <h3>📄 ${fileName}</h3>
+                  </div>
+                  <div style="padding: 30px;">
+                     ${htmlContent}
+                  </div>
+               `;
+               
+               container.appendChild(fileDiv);
+               
+            } catch (error) {
+               console.error('Error loading file:', file, error);
+               const errorDiv = document.createElement('div');
+               errorDiv.className = 'error';
+               errorDiv.innerHTML = `<strong>Error loading ${file}:</strong> ${error.message}`;
+               container.appendChild(errorDiv);
+            }
+         }
+      }
+
+      // Load files when page is ready
+      document.addEventListener('DOMContentLoaded', loadMarkdownFiles);
+   </script>
+
+</body>
+
+</html>
